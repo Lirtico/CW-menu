@@ -5,7 +5,7 @@ local Window = Library.CreateLib("Vuala CW", "BloodTheme")
 
 local Tab = Window:NewTab("Main")
 
-local Section = Tab:NewSection("Credits to the ppl who made these scripts!")
+local Section = Tab:NewSection("Vualita")
 
 Section:NewButton("Auto parry", "Auto parry (must have good ping 70-100)", function()
 local lp = game.Players.LocalPlayer
