@@ -1,7 +1,7 @@
--- The script on the gui ARENT mine! so credits to the ppl who made these scripts! --
+-- Vuala CW--
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("CW Script Hub|the scripts on the gui arent mine so credits to them", "BloodTheme")
+local Window = Library.CreateLib("Vuala CW", "BloodTheme")
 
 local Tab = Window:NewTab("Main")
 
