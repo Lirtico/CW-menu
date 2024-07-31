@@ -1,10 +1,6 @@
--- Vuala CW--
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-
-local Window = Library.CreateLib("Vuala CW", "BloodTheme")
-
+local Window = Library.CreateLib("Vuala CW", "DarkTheme")
 local Tab = Window:NewTab("Main")
-
 local Section = Tab:NewSection("Vualita")
 
 Section:NewButton("Auto parry", "Auto parry (must have good ping 70-100)", function()
