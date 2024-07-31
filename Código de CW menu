@@ -2,7 +2,6 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("Vuala CW", "DarkTheme")
 local Tab = Window:NewTab("Main")
 local Section = Tab:NewSection("Vualita")
-
 Section:NewButton("Auto parry", "Auto parry (must have good ping 70-100)", function()
 local lp = game.Players.LocalPlayer
 
@@ -70,11 +69,7 @@ end
 
 game.Players.PlayerAdded:Connect(playerAdded)
 end)
-
 Section:NewButton("infinite stamina", "shes a runner shes a trackstar", function()
--- CW | Inf. Stamina & No Jump Cooldown --
--- Made by neexx on V3rm --
-
 for i,v in pairs(getgc(true)) do
    if typeof(v) == "table" and rawget(v, "getIsMaxed") then
        v.getIsMaxed = function()
@@ -88,7 +83,6 @@ for i,v in pairs(getgc(true)) do
            return
        end
    end
-   -- "There was another script here but it caused the user to crash (lag out), so it had to be removed" -KiwisASkid --
    if typeof(v) == "table" and rawget(v, "spawnCharacter") then
        local oldfunc = v.spawnCharacter
        v.SpawnCharacter = function(a)
