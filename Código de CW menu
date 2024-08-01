@@ -140,3 +140,6 @@ end
 end
 end)
 end)
+Section:NewButton("hitbox expander extra", "combinar con lo demas", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Combat-Warriors-Hitbox-Expander-UPD2-16433"))()
+end)
