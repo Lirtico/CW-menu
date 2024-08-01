@@ -141,7 +141,122 @@ end
 end)
 end)
 Section:NewButton("hitbox expander extra", "combinar con lo demas", function()
-    loadstring(game:HttpGet("https://rawscripts.net/raw/Combat-Warriors-Hitbox-Expander-UPD2-16433"))()
+    local success, error = pcall(function() local keepListDirect = { game:GetService("Workspace").Camera, game:GetService("Players").LocalPlayer.Character, game:GetService("Workspace").LBFolder, game:GetService("Workspace").SpawnPoints }local keepListName = {
+        "Terrain",
+        "Platform"
+    }
+
+    local listSearch = {
+        "Dummy2",
+        "Training Dummy",
+        "spawnPoint",
+    }
+
+
+    local SpawnList = game:GetService("Workspace"):FindFirstChild("SpawnPoints")
+    local SpawnLocation = game:GetService("Workspace"):FindFirstChild("SpawnLocation")
+    local Dummy0kList = game:GetService("Workspace"):FindFirstChild("MAP"):FindFirstChild("dummies")
+    local Dummy5kList = game:GetService("Workspace"):FindFirstChild("MAP"):FindFirstChild("waterfall1")
+
+    local addTable = {SpawnList, Dummy0kList, Dummy5kList}
+
+
+    for _,Players in pairs(game.Players:GetPlayers()) do
+        table.insert(keepListDirect, Players.Character)
+    end
+
+
+
+    local Part
+    for _,List in pairs(addTable) do
+        for i,v in pairs(List:GetChildren()) do
+            if not table.find(listSearch, v.Name) then
+                continue
+            end
+
+
+            if v:FindFirstChild("HumanoidRootPart") then
+                table.insert(keepListDirect, v)
+                Part = v:FindFirstChild("HumanoidRootPart")
+            elseif v:IsA("Part") then
+                table.insert(keepListDirect, v)
+                Part = v
+            else
+                --print("Something went wrong -- [Map Delete]")
+                continue
+            end
+
+            print(List.Name, Part)
+            if List.Name == "SpawnPoints" then
+                print("HERE", List, Part)
+                createBaseplate(Part, 20, CFrame.new(0,-5.655,0))
+                -- NORMAL == (-89)
+                -- -10 == (-84)
+            else
+                --print(List)
+                createBaseplate(Part, 20, CFrame.new(0,0,0))
+            end
+
+        end
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SpawnList:FindFirstChild("spawnPoint").CFrame * CFrame.new(0,3,0)
+    end
+
+    for i,v in pairs(keepListDirect) do
+        --print(v)
+        if not table.find(keepListName, v.Name) then
+            table.insert(keepListName, v.Name)
+        end
+    end
+
+
+
+
+    for _, object in pairs(game.Workspace:GetDescendants()) do
+
+        if object:IsA("Folder") then
+            continue
+        end
+
+        if table.find(keepListName, object.Name) then
+            continue
+        end
+
+        local skip = false
+        for i,v in pairs(keepListDirect) do
+            if object:IsDescendantOf(v) then
+                --[[if v.Name == "Dummy2" or v.Name == "Training Dummy" then
+                    if object.Name == "HumanoidRootPart" or object.Name == "Humanoid" then
+                        ----print("IN: ",object.Name)
+                        skip = true
+                        continue
+                    else
+                        object:Destroy()
+                    end
+               end
+
+                if v.Name == game:GetService("Players").LocalPlayer.Name then
+                    if object:IsA("Accessory") then
+                        object:Destroy()
+                    end
+                    pcall(function()
+                        object.Transparency = 1
+                    end)
+                end]]
+
+               skip = true
+            end
+        end
+
+        if skip == true then
+            continue
+        end
+        object:Destroy()
+    end
+end)
+
+if not success then
+    --print(success, error)
+endend)
 end)
 Section:NewButton("infiniX", "InfiniX menu", function()
     local __function = loadstring(game:HttpGet("https://github.com/Hosvile/InfiniX/releases/latest/download/main.lua", true))
