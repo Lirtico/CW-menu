@@ -4,7 +4,7 @@ local Tab = Window:NewTab("Main")
 local Section = Tab:NewSection("Vualita")
 Section:NewButton("Auto parry", "Auto parry (must have good ping 70-100)", function()
 local lp = game.Players.LocalPlayer
-
+--inicio
 local animationInfo = {}
 
 function getInfo(id)
