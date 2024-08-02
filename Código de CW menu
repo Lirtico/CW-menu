@@ -140,6 +140,9 @@ end
 end
 end)
 end)
+Section:NewButton("hitbox expander extra", "combinar con lo demas", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Combat-Warriors-Hitbox-Expander-UPD2-16433"))()
+end)
 Section:NewButton("infiniX", "InfiniX menu", function()
     local __function = loadstring(game:HttpGet("https://github.com/Hosvile/InfiniX/releases/latest/download/main.lua", true))
 
