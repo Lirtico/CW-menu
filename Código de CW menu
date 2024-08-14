@@ -148,3 +148,60 @@ Section:NewButton("infiniX", "InfiniX menu", function()
 
 __function(__function)
 end)
+Section:NewButton("Auto equip DS", "No es el auto equip de mi menu normal", function()
+    -- LocalScript
+
+local player = game.Players.LocalPlayer
+
+-- Nombre de la herramienta que quieres que se auto equipe
+local mainToolName = "Dragon Slayer"
+
+local function equipMainTool()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local backpack = player:WaitForChild("Backpack")
+
+    -- Desequipa la herramienta principal si hay alguna otra herramienta equipada
+    local equippedTool = character:FindFirstChildOfClass("Tool")
+    if equippedTool and equippedTool.Name ~= mainToolName then
+        -- Si hay una herramienta equipada que no sea la principal, no hacer nada
+        return
+    end
+    
+    -- Desequipa la herramienta principal si hay alguna otra herramienta equipada
+    for _, tool in ipairs(character:GetChildren()) do
+        if tool:IsA("Tool") and tool.Name ~= mainToolName then
+            tool.Parent = backpack
+        end
+    end
+    
+    -- Busca la herramienta principal en la mochila
+    local mainTool = backpack:FindFirstChild(mainToolName)
+    
+    -- Equipa la herramienta principal si no está equipada
+    if mainTool and not character:FindFirstChild(mainToolName) then
+        mainTool.Parent = character
+    end
+end
+
+-- Equipar la herramienta principal cuando el personaje se añade
+player.CharacterAdded:Connect(function()
+    equipMainTool()
+end)
+
+-- Equipar la herramienta principal inmediatamente si el personaje ya está cargado
+if player.Character then
+    equipMainTool()
+end
+
+-- Verificar constantemente si la herramienta principal está equipada
+game:GetService("RunService").Heartbeat:Connect(function()
+    equipMainTool()
+end)
+
+-- Asegurarse de que la herramienta principal se mantenga equipada cuando se desequipa
+player.Backpack.ChildAdded:Connect(function(child)
+    if child:IsA("Tool") and not player.Character:FindFirstChildOfClass("Tool") then
+        equipMainTool()
+    end
+end)
+end)
